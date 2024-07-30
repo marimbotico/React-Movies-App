@@ -5,16 +5,16 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);// states the variable and function to update it. Initializes movies as an empty array
 
   useEffect(() => {
-    fetch('http://www.omdbapi.com/?s=star&apikey=11c4d9a4')// data fetching
+    fetch('http://www.omdbapi.com/?s=starwars&apikey=11c4d9a4')// data fetching
       .then((res) => res.json())// converts the response to JSON
       .then((data) => setMovies(data.Search)) //updates the movies state with the Search property from the fetched data
       .catch((err) => console.error(err));// logs any errors
   }, []);// an empty array ensures this only runs once
 
   return (
-    <div>
+    <div className='d-flex justify-content-start m-3'>
       {movies.map((movie) => (//iterates over the movies array using map to render a list of movie components
-        <Movie key={movie.id} movie={movie} />//movie={movie} passes the movie object as a prop to the `Movie` component
+        <Movie key={movie.imdbID} movie={movie} />//movie={movie} passes the movie object as a prop to the `Movie` component
       ))}
     </div>
   );

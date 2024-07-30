@@ -1,19 +1,19 @@
 import React, { useState } from "react";
 
-function AddReviews({addReview}) {
-    const [formValues, setFormValues] = useState({ name: " ", review: " " });
+function AddReviews({addReview}) {//
+    const [formValues, setFormValues] = useState({ name: " ", review: " " });// form object containing 2 properties
 
     const handleChange = (event) => {
-        setFormValues({ 
+        setFormValues({ //updates the state
             ...formValues, 
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value// creates a new object by copying the existing `formValues` using the spread operator and updates the property of the new object
         });
     };
 
     const handleSubmit = (event) => {
-        event.preventDefault();
-        addReview(formValues);
-        setFormValues({ name: " ", review: " "});
+        event.preventDefault();// prevent the refreshing of the page
+        addReview(formValues);//Calls the addReview function passed as a prop, passing the current formValues as an argument. This adds the new review to the parent component's state.
+        setFormValues({ name: " ", review: " "});// resets the form to it's initial state
     };
 
     return (

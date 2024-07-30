@@ -21,7 +21,7 @@ function Movie() {
         <div>
             {movieList.map((movie) => (//iterates over the movies array using map to render a list of movie components
                 <img 
-                    key={movie.id} // Adding key to each element
+                    key={movie.imdbID} // Adding key to each element
                     style={{ width: "300px", height: '250px', marginLeft: '10px', marginTop: '10px' }}//stylizing the card 
                     src={`http://img.omdbapi.com/?apikey=[11c4d9a4]&${movie.poster_path}`} 
                     alt={movie.title} // Adding alt attribute for accessibility
