@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavBar from './components/NavBar';
+import MovieList from './components/MovieList';
+import Movie from './Movie';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <NavBar /> 
+      <Routes>
+        <Route path="/" element={<MovieList />} />
+        <Route path="/movie/:id" element={<Movie />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
+//Router is used in the latest version instead of Switch
+//Routes the path="/" specifies the URL path to the root path. element={<MovieList />} will render the movielist when the user navigates to the root URL.
+// Route
