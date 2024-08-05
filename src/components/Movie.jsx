@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
-import ReviewForm from './ReviewForm';
+import AddReviews from './AddReview';
 import ReviewList from './ReviewList';
-import Stars from './Stars';
+
 
 const Movie = ({ movie }) => {//deconstructing, the component takes `movie` as a prop.
   const [reviews, setReviews] = useState([]);// declares reviews and setReviews updates it.
 
-  const addReview = (review) => {// function that takes review as a parameter
-    setReviews([...reviews, review]);// updates the 'reviews' state by appending the new `review` to the existing array of reviews.
-  };
+
 
   return (
-    <div>
-      <h1>{movie.title}</h1>
-      <img src={movie.poster} alt={`${movie.title} poster`} width="240" height="360" className="mb-3" />
-      <p>{movie.synopsis}</p>
-      <h2>Rating</h2>
-      <Stars />
-      <h2>Reviews</h2>
-      <ReviewList reviews={reviews} />
-      <ReviewForm addReview={addReview} />
+    <div className='container-fluid'>
+      <div className='row d-flex align-items center mt-10 mb-10'>
+        <h2>{movie.Title}</h2>
+        <img src={movie.Poster} alt={`${movie.Title} poster`} width="600" height="360" className="mb-4" />
+        <p>{movie.Plot}</p>
+        <h2>Review List</h2>
+        <ReviewList reviews={reviews} />
+        <AddReviews setReviews={setReviews} reviews={reviews} />
+      </div>
     </div>
   );
 };

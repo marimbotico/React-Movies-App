@@ -1,18 +1,27 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import { Route, Routes } from 'react-router-dom';
 import MovieList from './components/MovieList';
-import Movie from './Movie';
+import Movie from './components/movie';
+import '../node_modules/bootstrap/dist/css/bootstrap.css';
+import './App.css';
+import MovieListHeading from './components/MovieListHeading';
+
+
+
 
 function App() {
   return (
-    <Router>
-      <NavBar /> 
-      <Routes>
-        <Route path="/" element={<MovieList />} />
-        <Route path="/movie/:imdbID" element={<Movie />} />
-      </Routes>
-    </Router>
+    <>
+      <div className='container-fluid movie-app'>
+        <div>
+          <MovieListHeading />
+          <Routes>
+            <Route path="/" element={<MovieList />} />
+            {/* <Route path="/movie/:imdbID" element={<Movie />} /> */}
+          </Routes>
+        </div>
+      </div>
+    </>
   );
 }
 

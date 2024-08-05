@@ -63,3 +63,40 @@ function SomeComponent() {
 //<button onClick={() => setCount{count + 1}}.count is {count}</button>
 //whatever argument you pass on setState will affect state
 // EXPLAIN REACT 19 ON YOUTUBE. Go through the docs.
+
+// TO TOGGLE BETWEEN STATES SHOW OR HIDE:
+function HiddenMessage() {
+    const [show, setShow] = useState(false);
+
+    const toggle = () => {
+        setShow(!show);
+    };
+
+    return (
+        <>
+            {show ? <p>I’m hidden!</p> : null}
+            <button onClick={toggle}>Show/Hide</button>
+        </>
+    );
+}
+
+// ANOTHER EXAMPLE:
+function Warning() {
+    const [showWarning, setShowWarning] = useState(true);
+    if (showWarning)
+        return (
+            <div className='alert alert-warning alert-dismissible fade show' role='alert'>
+                <strong>Warning!</strong> If you dismiss this, you will see a disturbing image.
+                <button className='close' onClick={() => setShowWarning(!setShowWarning)}>
+                    <span>&times;</span>
+                </button>
+            </div>
+        );
+    else//line 90 shows the image but line 99 toggles it
+        return (
+            <img
+                src=''
+                onClick={() => setShowWarning(!setShowWarning)}>/
+            </img>
+        )
+}

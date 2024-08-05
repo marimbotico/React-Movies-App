@@ -1,7 +1,8 @@
 import React from 'react';
-import Review from './Review';
+import Review from './Reviews';
 
 const ReviewList = ({ reviews }) => {
+    // console.log("reviewsList:", reviews);
   return (
     <div>
       {reviews.map((review, index) => (//iterates over the reviews array using map to render a list of review components and their respective index

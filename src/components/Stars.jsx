@@ -1,23 +1,31 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from "react";
 
-const Stars = () => {
-  const [rating, setRating] = useState(0);// initializes the stars at 0.
+function Stars({ starValue , setStarValue }) {// 2 props
+    const [rating, setRating] = useState(starValue);
 
-  return (
-    <div>
-      {[1, 2, 3, 4, 5].map((star) => (//using an array of numbers to create the 5 stars/ //span element represents 1 star.
-        <span
-          key={star}
-          onClick={() => setRating(star)}// event handler sets rating to current star. 
-          style={{ cursor: 'pointer', color: star <= rating ? 'gold' : 'grey' }}// changes the cursor to a pointer when hovering.
-          //If the current star value is less than or equal to the rating, the color is set to 'gold' (indicating a selected star).
-        //If the current star value is greater than the rating, the color is set to 'grey' (indicating an unselected star).
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  );
-};
+    useEffect(() => {
+        setRating(starValue);//Whenever starValue changes, the setRating function is called to update the local rating state to match the new starValue.
+    }, [starValue]);// this dependency array runs whenever the `starValue` prop changes.
+
+    const handleClick = (value) => {// when a star is clicked
+        setRating(value);// updates the local rating state
+        setStarValue(value); //updates the rating in the parent's component's state
+    };
+
+    return (
+        <div>
+            {[1, 2, 3, 4, 5].map((star) => (// iterates over an array of 5 numbers(stars)
+                <span// each star is represented by a star
+                    key={star}
+                    onClick={() => handleClick(star)}
+                    style={{ cursor: "pointer", color: star <= rating ? "gold" : "gray" }}// makes the element clickable. 
+                    //the star's color is set to gold if its value is less than or equal to the current rating.
+                >
+                    ★
+                </span>
+            ))}
+        </div>
+    );
+}
 
 export default Stars;
